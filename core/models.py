@@ -27,8 +27,6 @@ class CustomAccMan(BaseUserManager):
     def create_user(self, email, password, user_type, **other_fields):
         if not email:
             raise ValueError("Please provide a valid email address")
-        if user_type is None:
-            user_type = USER_TYPES[0][0]
         email = self.normalize_email(email)
         user = self.model(email=email, user_type=user_type ,**other_fields)
         user.set_password(password)
